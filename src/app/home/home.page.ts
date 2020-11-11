@@ -61,7 +61,6 @@ export class HomePage {
   }
 
   public async deletar(id: number) {
-    console.log(this.usuario);
     this.usuario.id = id;
     console.log(this.usuario);
     this.showAlertDelete();
