@@ -1,6 +1,6 @@
 <ion-header [translucent]="true">
   <ion-toolbar color="dark">
-    <ion-title>
+    <ion-title class="ion-text-center">
       Usuários
     </ion-title>
   </ion-toolbar>
@@ -8,10 +8,12 @@
 
 <ion-content [fullscreen]="true">
 
-  <ion-item *ngFor="let user of listaUsuarios" [routerLink]="'/exibir-usuario/' + user.id">
-    <ion-thumbnail slot="start">
+  <ion-item-sliding *ngFor="let user of listaUsuarios">
+
+    <ion-item [routerLink]="'/exibir-usuario/' + user.id">
+    <ion-avatar slot="start">
       <img [src]="user.avatar" alt="foto">
-    </ion-thumbnail>
+    </ion-avatar>
 
     <div>
       <h4>{{ user.first_name + ' ' + user.last_name }}</h4>
@@ -21,7 +23,27 @@
     <ion-badge color="dark" slot="end">
       ID: {{user.id}}
     </ion-badge>
-  </ion-item>
+   </ion-item>
+
+   <ion-item-options side="end">
+
+    <ion-item-option color="warning" [routerLink]="'/alterar/' + user.id">
+      <ion-icon slot="icon-only" name="create-outline"></ion-icon>
+    </ion-item-option>
+
+    <ion-item-option color="danger" (click)="deletar(user.id)">
+    <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+   </ion-item-option>
+   
+  </ion-item-options>
+
+</ion-item-sliding>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button color="success" routerLink="/cadastrar">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
   
 </ion-content>
 
@@ -34,7 +56,7 @@
       </ion-button>
     </ion-buttons>
 
-    Página: {{pagina}}
+    Página: {{pagina}} 
 
     <ion-buttons slot="end" *ngIf="pagina < totalPaginas">
       <ion-button (click)="buscarUsuarios(pagina + 1)">
