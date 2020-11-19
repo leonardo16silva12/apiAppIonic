@@ -32,9 +32,9 @@ export class UserService {
     return this.http.put(`${this.url}/${usuario.id}`, usuario);
   }
 
-  public deletar(usuario: Usuario) {
+  public deletar(id: number) {
     console.log(this.url + '/' + usuario.id);
-    return this.http.delete(`${this.url}/${usuario.id}`);
+    return this.http.delete(`${this.url}/${id}`);
   }
 
 }

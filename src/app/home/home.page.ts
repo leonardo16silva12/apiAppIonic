@@ -51,7 +51,7 @@ export class HomePage {
         }, {
           text: 'Ok',
           handler: () => {
-            this.userService.deletar(this.usuario);
+            this.userService.deletar(this.id);
           }
         }
       ]
@@ -61,8 +61,8 @@ export class HomePage {
   }
 
   public async deletar(id: number) {
-    this.usuario.id = id;
-    console.log(this.usuario);
+    this.id = id;
+    console.log(this.id);
     this.showAlertDelete();
 
   }
